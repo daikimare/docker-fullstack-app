@@ -1,11 +1,12 @@
 version: '3'
 services:
-  node:
+  react:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./docker/react
+    container_name: react_container
+    tty: true
     volumes:
-      - ./:/.usr/src/app
-    command: sh -c "cd client && yarn dev"
+      - ./react:/usr/src/app/react:cached
+    command: sh -c "cd /usr/src/app/react/react-app && yarn start"
     ports:
       - "3000:3000"
